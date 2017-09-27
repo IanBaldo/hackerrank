@@ -28,4 +28,6 @@ def deepR(node, val):
     return deepL(node.left, val) and deepR(node.right, node.data)
 
 def checkBST(root):
+    if root == None:
+        return 1 # true
     return deepL(root.left,root.data) and deepR(root.right,root.data)
