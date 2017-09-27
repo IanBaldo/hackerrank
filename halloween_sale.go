@@ -1,3 +1,4 @@
+// https://www.hackerrank.com/contests/hourrank-23/challenges/halloween-sale
 package main
 import "fmt"
 

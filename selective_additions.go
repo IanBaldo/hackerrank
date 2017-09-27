@@ -1,3 +1,4 @@
+// https://www.hackerrank.com/contests/hourrank-23/challenges/selective-additions
 package main
 
 import "fmt"
@@ -30,18 +31,10 @@ func main() {
 
 }
 
-
+// Function to add the specified value to all non-favourite numbers in a slice
 func addValue2Slice (w []int, val int, favs []int) []int {
 	for i,num := range w {
-		stopOp := false
-		for _,f := range favs {
-			if num == f {
-				stopOp = true
-				break
-			}
-		}
-
-		if !stopOp {
+		if !sliceContains(favs, num) {
 			w[i] += val
 		}
 	}
@@ -49,7 +42,19 @@ func addValue2Slice (w []int, val int, favs []int) []int {
 	return w
 }
 
+// Simple function to search for a value in a slice
+func sliceContains (inputSlice []int, val int) bool {
+	
+	for _, n := range inputSlice {
+		if n == val {
+			return true
+		}
+	}
 
+	return false
+}
+
+// Returns the total sum of the content an integer slice
 func sumArray (in []int) int {
 	var sum int
 	for _,val := range in {
@@ -58,7 +63,7 @@ func sumArray (in []int) int {
 	return sum
 }
 
-
+// Scans n integers in a line. Returns an integer slice with those.
 func intScanln (n int) ([]int, error) {
 	x := make([]int, n)
 	y := make([]interface{}, len(x))
