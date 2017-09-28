@@ -50,28 +50,38 @@ func NewElement(data string) *element {
 }
 
 func main() {
+	// Create Stack
 	stk := NewStack()
+
+	// Reads number os test cases
 	var numTests int
 	fmt.Scanf("%d", &numTests)
 
+	// Runs each test case
 	for i:=1; i<= numTests; i++ {
-     
+	 
+		// Read brackets input
 		var test string
 		fmt.Scanln(&test)
 		
         result := "YES"
         
         for j := range test {
-            data := string(test[j])
-            if data == "(" || data == "[" || data == "{" {
-                stk.Push(NewElement(data))
-            } else {
-                popped := stk.Pop()
-                if popped != nil && (popped.data == "(" && data != ")") || (popped.data == "[" && data != "]") || (popped.data == "{" && data != "}"){
-                    result = "NO"
-                    
-                }
-            }
+			data := string(test[j])
+			switch data {
+			case "(":
+				stk.Push(NewElement(")"))
+			case "[":
+				stk.Push(NewElement("]"))
+			case "{":
+				stk.Push(NewElement("}"))
+			default:
+				popped := stk.Pop()
+				if popped != nil && popped.data != data {
+					result = "NO"
+					break
+				}
+			}
 		}
 
         fmt.Println(result)
