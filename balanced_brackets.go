@@ -19,6 +19,9 @@ func (stk *stack) Push(elem *element) {
 }
 
 func (stk *stack) Pop() *element {
+	if stk.head == nil {
+		return nil
+	}
 	tmp := stk.head
 	stk.head = stk.head.next
 	return tmp
@@ -64,7 +67,7 @@ func main() {
                 stk.Push(NewElement(data))
             } else {
                 popped := stk.Pop()
-                if (popped.data == "(" && data != ")") || (popped.data == "[" && data != "]") || (popped.data == "{" && data != "}"){
+                if popped != nil && (popped.data == "(" && data != ")") || (popped.data == "[" && data != "]") || (popped.data == "{" && data != "}"){
                     result = "NO"
                     
                 }
