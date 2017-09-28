@@ -50,17 +50,16 @@ func NewElement(data string) *element {
 }
 
 func main() {
-	// Create Stack
-	stk := NewStack()
-
 	// Reads number os test cases
 	var numTests int
 	fmt.Scanf("%d", &numTests)
 
 	// Runs each test case
 	for i:=1; i<= numTests; i++ {
-	 
-		// Read brackets input
+	    // Create Stack
+    	stk := NewStack()
+		
+        // Read brackets input
 		var test string
 		fmt.Scanln(&test)
 		
@@ -84,6 +83,9 @@ func main() {
 			}
 		}
 
+		if stk.head != nil {
+			result = "NO"
+		}
         fmt.Println(result)
 	}
 
