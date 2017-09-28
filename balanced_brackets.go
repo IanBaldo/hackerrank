@@ -48,10 +48,30 @@ func NewElement(data string) *element {
 
 func main() {
 	stk := NewStack()
-	stk.Push(NewElement("a"))
-	stk.Push(NewElement("b"))
-	stk.Push(NewElement("c"))
-	stk.Push(NewElement("d"))
-	stk.Push(NewElement("e"))
-	stk.Print()
+	var numTests int
+	fmt.Scanf("%d", &numTests)
+
+	for i:=1; i<= numTests; i++ {
+     
+		var test string
+		fmt.Scanln(&test)
+		
+        result := "YES"
+        
+        for j := range test {
+            data := string(test[j])
+            if data == "(" || data == "[" || data == "{" {
+                stk.Push(NewElement(data))
+            } else {
+                popped := stk.Pop()
+                if (popped.data == "(" && data != ")") || (popped.data == "[" && data != "]") || (popped.data == "{" && data != "}"){
+                    result = "NO"
+                    
+                }
+            }
+		}
+
+        fmt.Println(result)
+	}
+
 }
